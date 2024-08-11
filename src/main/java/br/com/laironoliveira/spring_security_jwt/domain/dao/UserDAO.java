@@ -12,4 +12,5 @@ public interface UserDAO extends CrudRepository<User, Long>{
     
     Optional<User> findFirstByUuid(String uuid);
     Optional<User> findFirstByUsername(String username);
+    boolean existsByUsername(String username);
 }

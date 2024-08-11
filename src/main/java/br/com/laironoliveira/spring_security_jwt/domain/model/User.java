@@ -1,10 +1,14 @@
 package br.com.laironoliveira.spring_security_jwt.domain.model;
 
 import java.time.OffsetDateTime;
+import java.util.Collection;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,7 +27,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @SQLRestriction("deleted_at IS NULL")
-public class User {
+public class User implements UserDetails {
 
     @EqualsAndHashCode.Include
     @Id
@@ -49,4 +53,9 @@ public class User {
 
     @Column(name = "deleted_at")
     private OffsetDateTime deletedAt;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(() -> "read");
+    }
 }

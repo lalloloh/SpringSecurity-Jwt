@@ -28,4 +28,12 @@ public class UserService {
         else
             throw new EntityNotFoundException("User not found");
     }
+
+    public boolean userExistsByUsername(String username){
+        return dao.existsByUsername(username);
+    }
+
+    public void save(User user) {
+        dao.save(user);
+    }
 }

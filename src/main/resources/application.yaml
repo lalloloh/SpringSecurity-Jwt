@@ -9,3 +9,9 @@ spring:
     output:
         ansi:
             enabled: always
+
+jwt:
+    private:
+        key: classpath:private.key
+    public:
+        key: classpath:public.pub
